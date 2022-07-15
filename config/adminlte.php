@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'La Tiendita VNV',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -66,7 +66,7 @@ return [
 
     'usermenu_enabled' => true,
     'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-danger',
+    'usermenu_header_class' => 'bg-info',
     'usermenu_image' => false,
     'usermenu_desc' => false,
     'usermenu_profile_url' => false,
@@ -122,7 +122,7 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => 'bg-red',
+    'classes_brand' => 'bg-gray',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
@@ -188,13 +188,13 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'Reservacion/create',
+    'dashboard_url' => '/admin',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
-    'profile_url' => false,
+    'profile_url' => '/adminperfil',
 
     /*
     |--------------------------------------------------------------------------
@@ -226,39 +226,39 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'Buscar',
-            'topnav_right' => true,
-        ],
-        [
-            'type'         => 'fullscreen-widget',
-            'topnav_right' => true,
-        ],
+        // [
+        //     'type'         => 'navbar-search',
+        //     'text'         => 'Buscar',
+        //     'topnav_right' => true,
+        // ],
+        // [
+        //     'type'         => 'fullscreen-widget',
+        //     'topnav_right' => true,
+        // ],
 
         // Sidebar items:
+        // [
+        //     'type' => 'sidebar-menu-search',
+        //     'text' => 'Buscar',
+        // ],
+        // [
+        //     'text' => 'blog',
+        //     'url'  => 'admin/blog',
+        //     'can'  => 'manage-blog',
+        // ],
         [
-            'type' => 'sidebar-menu-search',
-            'text' => 'Buscar',
+          'text'        => 'Reservaciones',
+          'route'       => 'adminreservaciones.index',
+          'icon'        => 'far fa-fw fa-file',
+          'label_color' => 'success',
         ],
+        ['header' => 'Configuraciones'],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text'  => 'Áreas',
+            'route' => 'adminareas.index',
+            'icon'  => 'fas fa-fw fa-user',
         ],
-        [
-            'text'        => 'Reservaciones',
-            'url'         => '',
-            'icon'        => 'far fa-fw fa-file',
-            'label_color' => 'success',
-        ],
-        /*['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
+        /*[
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
@@ -355,22 +355,22 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
+                  'type' => 'js',
+                  'asset' => true,
+                  'location' => 'js/jquery-3.5.1.js',
                 ],
                 [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
+                  'type' => 'js',
+                  'asset' => true,
+                  'location' => 'js/jquery.dataTables.min.js',
                 ],
                 [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                  'type' => 'css',
+                  'asset' => true,
+                  'location' => 'css/jquery.dataTables.min.css',
                 ],
             ],
         ],

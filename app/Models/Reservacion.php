@@ -9,5 +9,13 @@ class Reservacion extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['Nombre','Telefono','Correo','LugarReservar','NoPersonas','HoraInicioReserv','HoraFinReserv','FechaReservacion'];
+    protected $fillable = [
+      'nombre_reservacion',
+      'numero_telefonico',
+      'email',
+      'fecha_reservacion',
+      'hora_reservacion',
+      'area_reservacion',
+      'n_personas',
+    ];
 }
