@@ -11,13 +11,13 @@
       <thead>
         <tr>
           <th scope="col" class="text-left">Nombre</th>
-          <th scope="col" class="text-left">Correo</th>
           <th scope="col" class="text-left">Telefono</th>
-          <th scope="col" class="text-left">Fecha de Reservacion</th>
-          <th scope="col" class="text-left">Hora Reservacion</th>
-          <th scope="col" class="text-left">Lugar a Reservar</th>
+          <th scope="col" class="text-left">Correo</th>
+          <th scope="col" class="text-left">Fecha</th>
+          <th scope="col" class="text-left">Hora</th>
+          <th scope="col" class="text-left">Área</th>
           <th scope="col" class="text-left">No. de Personas</th>
-          <th scope="col" class="text-left">Acciones</th>
+          <th scope="col" class="text-center">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -33,7 +33,7 @@
             <td>
               <div class="flex justify-between gap-2">
                 <button class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-2 rounded-sm" wire:click.prevent="editar({{$reservacion->id}})"><i class="fas fa-pen"></i></button>
-                <button class="bg-red-600 hover:bg-red-500 text-white px-3 py-2 rounded-sm" wire:click="eliminar({{$reservacion->id}})"><i class="fas fa-trash"></i></button>
+                <button class="bg-red-600 hover:bg-red-500 text-white px-3 py-2 rounded-sm" wire:click="confirmarEliminar({{$reservacion->id}})"><i class="fas fa-trash"></i></button>
               </div>
             </td>
           </tr>

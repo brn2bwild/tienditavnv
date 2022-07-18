@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateAreasTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('areas', function (Blueprint $table) {
@@ -22,11 +17,6 @@ class CreateAreasTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('areas');

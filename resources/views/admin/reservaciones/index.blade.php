@@ -39,4 +39,35 @@
       });
     });
   </script>
+  <script>
+    window.addEventListener('swal:modal', event => {
+      Swal.fire({
+        title: event.detail.title,
+        text: event.detail.text,
+        icon: event.detail.icon,
+        confirmButtonText: 'Aceptar',
+      })
+    });
+
+    window.addEventListener('swal:confirmar', event => {
+      Swal.fire({
+        title: event.detail.title,
+        text: event.detail.text,
+        icon: event.detail.icon,
+        showDenyButton: true,
+        confirmButtonText: 'Borrar',
+        denyButtonText: 'Cancelar',
+      }).then((resultado) => {
+        if(resultado.isConfirmed) {
+          window.livewire.emit('eliminar', event.detail.id)
+          Swal.fire({
+            title: '¡Reservación eliminada!',
+            text: '',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+          })
+        }
+      })
+    })
+  </script>
 @endsection 

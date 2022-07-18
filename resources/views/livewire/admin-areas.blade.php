@@ -13,7 +13,7 @@
           <th scope="col" class="text-left">Nombre</th>
           <th scope="col" class="text-left">Capacidad</th>
           <th scope="col" class="text-left">Descripción</th>
-          <th scope="col" class="text-left">Acciones</th>
+          <th scope="col" class="text-center">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -24,7 +24,7 @@
             <td class="text-left">{{ $area->descripcion }}</td>
             <td class="flex justify-around">
               <button wire:click.prevent="editar({{$area->id}})" class="bg-blue-700 hover:bg-blue-600 text-white px-3 py-2 rounded-sm"><i class="fas fa-pen"></i></button>
-              <button wire:click.prevent="eliminar({{$area->id}})" class="bg-red-700 hover:bg-red-600 text-white px-3 py-2 rounded-sm"><i class="fas fa-trash"></i></button>
+              <button wire:click.prevent="confirmarEliminar({{$area->id}})" class="bg-red-700 hover:bg-red-600 text-white px-3 py-2 rounded-sm"><i class="fas fa-trash"></i></button>
             </td>
           </tr>
         @endforeach

@@ -22,6 +22,8 @@ class AdminReservaciones extends Component
       'n_personas' => 'required|numeric',
     ];
 
+    protected $listeners = ['eliminar'];
+
     public function render() {
       $reservaciones = ($this->busqueda == '') ? Reservacion::paginate(5) : Reservacion::where('nombre_reservacion', 'like', '%'.$this->busqueda.'%')->paginate(5);
 
@@ -47,6 +49,13 @@ class AdminReservaciones extends Component
 
       $this->limpiarDatos();
       $this->cerrarModal();
+
+      $this->dispatchBrowserEvent('swal:modal', [
+        'type' => 'success',
+        'title' => 'Reservación guardada exitosamente.',
+        'text' => '',
+        'icon' => 'success',
+      ]);
     }
 
     public function crear() {
@@ -74,6 +83,16 @@ class AdminReservaciones extends Component
       $this->n_personas = $reservacion->n_personas;
   
       $this->mostrarModal();
+    }
+
+    public function confirmarEliminar($id) {
+      $this->dispatchBrowserEvent('swal:confirmar', [
+        'type' => 'warning',
+        'title' => '¿Estás seguro de borrar la reservación?',
+        'text' => '',
+        'icon' => 'warning',
+        'id' => $id,
+      ]);
     }
 
     public function eliminar($id) {

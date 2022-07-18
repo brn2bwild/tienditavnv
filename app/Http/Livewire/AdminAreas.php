@@ -12,10 +12,12 @@ class AdminAreas extends Component
   public $busqueda;
 
   protected $rules = [
-    'nombre' => 'required',
+    'nombre' => 'sometimes|required|unique:areas',
     'capacidad' => 'required|numeric',
     'descripcion' => 'nullable|max:200'
   ];
+
+  protected $listeners = ['eliminar'];
 
   public function render()
   { 
@@ -36,6 +38,13 @@ class AdminAreas extends Component
 
     $this->cerrarModal();
     $this->limpiarDatos();
+
+    $this->dispatchBrowserEvent('swal:modal', [
+      'type' => 'success',
+      'title' => 'Área guardada exitosamente.',
+      'text' => '',
+      'icon' => 'success',
+    ]);
   }
 
   public function crear() {
@@ -51,6 +60,16 @@ class AdminAreas extends Component
     $this->descripcion = $localizacion->descripcion;
 
     $this->mostrarModal();
+  }
+
+  public function confirmarEliminar($id) {
+    $this->dispatchBrowserEvent('swal:confirmar', [
+      'type' => 'warning',
+      'title' => '¿Estás seguro de borrar el área?',
+      'text' => '',
+      'icon' => 'warning',
+      'id' => $id,
+    ]);
   }
 
   public function eliminar($id) {

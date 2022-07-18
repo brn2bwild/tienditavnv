@@ -17,14 +17,23 @@
             <div class="mb-2">
               <label for="nombre_area" class="text-gray-800 text-sm font-bold block text-left">Nombre</label>
               <input id="nombre_area" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="text" wire:model="nombre"/>
+              @error('nombre')
+                <em class="text-left text-red-600">{{$message}}</em>
+              @enderror
             </div>
             <div class="mb-2">
               <label for="capacidad_area" class="text-gray-800 text-sm font-bold block text-left">Capacidad</label>
               <input id="capacidad_area" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="number" wire:model="capacidad"/>
+              @error('capacidad')
+                <em class="text-left text-red-600">{{$message}}</em>
+              @enderror
             </div>
             <div class="mb-4">
               <label for="descripcion_area" class="text-gray-800 text-sm font-bold block text-left ">Descripción</label>
               <input id="descripcion_area" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="text" wire:model="descripcion"/>
+              @error('descripcion')
+                <em class="text-left text-red-600">{{$message}}</em>
+              @enderror
             </div>
             
             <div class="flex items-center justify-between w-full">
