@@ -7,17 +7,14 @@
   <title>Reservaciones La Tiendita VNV</title>
   <link href="{{asset('css/app.css')}}" rel="stylesheet">
   <script src="{{asset('js/app.js')}}"></script>
+  <script src="{{asset('js/sweetalert2@11.js')}}"></script>
+  @livewireStyles
 </head>
 <body class="antialiased" style="background-color: #F2D1C9">
-{{-- <body class="antialiased" style="background-color: #E7DFC6"> --}}
-
   <div class="container mx-auto" style="background-color: #F2D1C9">
     <div class="flex justify-center px-6 my-12">
-      <!-- Row -->
-      <div class="w-full xl:w-3/4 lg:w-11/12 flex">
-        <!-- Col -->
+      {{-- <div class="w-full xl:w-3/4 lg:w-11/12 flex">
         <div class="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg" style="background-image: url('{{asset('img/rio.jpg')}}')" id="muestra"></div>
-        <!-- Col -->
         <div class="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
           <h3 class="pt-4 text-2xl text-center">Reservaciones La Tiendita VNV</h3>
           <form class="px-8 pt-6 pb-8 bg-white rounded" action="{{route('reservaciones.store')}}" method="POST">
@@ -120,21 +117,49 @@
             </div>
           </form>
         </div>
-      </div>
+      </div> --}}
+      <livewire:reservaciones/>
     </div>
   </div>
   <footer class="text-center text-white">
     <div class="flex justify-center" style="background-color: rgba(0, 0, 0, 0.05);">
-        <span class="mr-2">© 2022 Copyright:</span>
-        <a class="text-white hover:text-black" href="https://github.com/Devildrack">DevilSoft</a>
+      <span class="mr-2">© 2022 Copyright:</span>
+      <a class="text-white hover:text-black" href="https://github.com/Devildrack">DevilSoft</a>
     </div>
   </footer>
-    
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  @livewireScripts  
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
   <script>
-    $('#localizacion').change(function(event){
-      let localizacion = $('#localizacion').val()
-    });
+    window.addEventListener('swal:confirmar', event => {
+      Swal.fire({
+        title: event.detail.title,
+        text: event.detail.text,
+        icon: event.detail.icon,
+        showDenyButton: true,
+        denyButtonText: 'Cancelar',
+        denyButtonColor: '#d33',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#f43f5e',
+      }).then((resultado) => {
+        if(resultado.isConfirmed) {
+          window.livewire.emit('guardar', event.detail.id)
+          Swal.fire({
+            title: '¡Reservación realizada!',
+            text: '',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#f43f5e'
+          })
+        }
+      })
+    })
+  </script>
+  <script>
+    function cambiarImg(){
+      var nombre = document.getElementById("area_reservacion").value
+      window.livewire.emit('cambiarImg', nombre)
+    }
   </script>
 </body>
 </html>

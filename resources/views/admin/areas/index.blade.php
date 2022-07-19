@@ -56,7 +56,7 @@
         text: event.detail.text,
         icon: event.detail.icon,
         showDenyButton: true,
-        confirmButtonText: 'Borrar',
+        confirmButtonText: 'Eliminar',
         denyButtonText: 'Cancelar',
       }).then((resultado) => {
         if(resultado.isConfirmed) {
@@ -70,5 +70,38 @@
         }
       })
     })
+
+    window.addEventListener('swal:confirmarImg', event => {
+      Swal.fire({
+        title: event.detail.title,
+        text: event.detail.text,
+        icon: event.detail.icon,
+        showDenyButton: true,
+        confirmButtonText: 'Eliminar',
+        denyButtonText: 'Cancelar',
+      }).then((resultado) => {
+        if(resultado.isConfirmed) {
+          window.livewire.emit('eliminarImg', event.detail.id)
+          Swal.fire({
+            title: '¡Imágen eliminada!',
+            text: '',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+          })
+        }
+      })
+    })
+  </script>
+
+  <script>
+    function mostrarImg(url) {
+      Swal.fire({
+        title: '',
+        text: 'Esta imagen se mostrará a los usuarios',
+        imageUrl: 'storage/'+url,
+        imageWidth: 400,
+        imageHeight: 400,
+      })
+    }
   </script>
 @endsection 

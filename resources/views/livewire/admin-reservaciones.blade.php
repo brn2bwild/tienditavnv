@@ -4,7 +4,7 @@
   @endif
   <div class="flex justify-between w-full pb-4">
     <button class="bg-blue-600 hover:bg-blue-500 text-white py-2 px-4 border border-blue-700 rounded" wire:click="crear()">Nueva</button>
-    <input class="px-2 text-sm border border-gray-300 rounded" wire:model="busqueda" type="text" placeholder="Buscar">
+    <input class="px-2 text-sm border border-gray-300 rounded" wire:model="busqueda" type="text" placeholder="Buscar por nombre">
   </div>
   <div class="flex justify-center w-full">
     <table class="table table-hover">

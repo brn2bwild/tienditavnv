@@ -13,6 +13,7 @@ class CreateAreasTable extends Migration
             $table->string('nombre')->unique();
             $table->integer('capacidad');
             $table->string('descripcion')->nullable();
+            $table->string('url_img')->nullable();
             $table->timestamps();
         });
     }

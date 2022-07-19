@@ -13,5 +13,6 @@ class Area extends Model
       'nombre',
       'capacidad',
       'descripcion',
+      'url_img',
     ];
 }
