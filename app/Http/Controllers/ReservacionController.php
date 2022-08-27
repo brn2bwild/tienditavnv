@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ConfirmacionMail;
+use App\Models\Area;
+use App\Models\Localizacion;
 use App\Models\Reservacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ReservacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-
     public function index()
     {
         if (auth()->check()) {
@@ -23,92 +20,50 @@ class ReservacionController extends Controller
         return redirect()->route('Reservacion.create');
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('Reservacion.BlogReservacion');
+    public function create() {
+      $areas = Area::all();
+      return view('reservaciones.crear', compact('areas'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'Nombre' => 'required',
-            'Telefono' => 'required',
-            'Correo' => 'required',
-            'LugarReservar' => 'required',
-            'NoPersonas' => 'required',
-            'HoraInicioReserv' => 'required',
-            'HoraFinReserv' => 'required',
-            'FechaReservacion' => 'required'    
-        ]);
+    public function store(Request $request) {
+      $this->validate($request, [
+        'nombre_reservacion' => ['required', 'max:150'],
+        'email' => ['required', 'email'],
+        'numero_telefonico' => ['required', 'digits:10'],
+        'fecha_reservacion' => ['required', 'date'],
+        'hora_reservacion' => ['required'],
+        'area_reservacion' => ['required'],
+        'n_personas' => ['required'],  
+      ]);
 
-        Reservacion::create([
-            'Nombre' => $request->get('Nombre'),
-            'Telefono' => $request->get('Telefono'),
-            'Correo' => $request->get('Correo'),
-            'LugarReservar' => $request->get('LugarReservar'),
-            'NoPersonas' => $request->get('NoPersonas'),
-            'HoraInicioReserv' => $request->get('HoraInicioReserv'),
-            'HoraFinReserv' => $request->get('HoraFinReserv'),
-            'FechaReservacion' => $request->get('FechaReservacion')
-        ]);
+      Reservacion::create($request->all());
 
-        return back()->with('mensaje','Su Reservacion ha sido Registrada Correctamente');
+      $datos_mail = [
+        'nombre' => $request->nombre_reservacion,
+        'fecha' => $request->fecha_reservacion,
+        'hora' => $request->hora_reservacion,
+        'area' => $request->area_reservacion,
+        'cantidad' => $request->n_personas,
+      ];
+
+      Mail::to($request->email)->send(new ConfirmacionMail($datos_mail));
+
+      return back()->with('mensaje','Su reservación está lista.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Reservacion  $reservacion
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Reservacion $reservacion)
-    {
+    public function show(Reservacion $reservacion) {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Reservacion  $reservacion
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Reservacion $reservacion)
-    {
+    public function edit(Reservacion $reservacion) {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Reservacion  $reservacion
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Reservacion $reservacion)
-    {
+    public function update(Request $request, Reservacion $reservacion) {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Reservacion  $reservacion
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $Reservacion = Reservacion::find($id);
 
         $Reservacion->delete();
