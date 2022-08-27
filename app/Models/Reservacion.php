@@ -16,6 +16,7 @@ class Reservacion extends Model
       'fecha_reservacion',
       'hora_reservacion',
       'area_reservacion',
+      'comentario',
       'n_personas',
     ];
 }

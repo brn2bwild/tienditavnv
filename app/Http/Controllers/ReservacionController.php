@@ -33,7 +33,8 @@ class ReservacionController extends Controller
         'fecha_reservacion' => ['required', 'date'],
         'hora_reservacion' => ['required'],
         'area_reservacion' => ['required'],
-        'n_personas' => ['required'],  
+        'comentario' => ['required'],
+        'n_personas' => ['required'],
       ]);
 
       Reservacion::create($request->all());
