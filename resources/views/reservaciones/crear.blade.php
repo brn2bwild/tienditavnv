@@ -8,6 +8,7 @@
   <link href="{{asset('css/app.css')}}" rel="stylesheet">
   <script src="{{asset('js/app.js')}}"></script>
   <script src="{{asset('js/sweetalert2@11.js')}}"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
   @livewireStyles
 </head>
 <body class="antialiased" style="background-color: #F2D1C9">
@@ -160,6 +161,23 @@
       var nombre = document.getElementById("area_reservacion").value
       window.livewire.emit('cambiarImg', nombre)
     }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('#hora_reservacion').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 30,
+        minTime: '10',
+        maxTime: '6:00pm',
+        defaultTime: '11',
+        startTime: '10:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+      })
+    })
   </script>
 </body>
 </html>
