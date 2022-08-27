@@ -68,10 +68,10 @@
             <div class="mb-3 md:flex md:justify-between">
               <div class="mb-4 md:mr-2 md:mb-0">
                 <label class="block mb-2 text-sm font-bold text-gray-700" for="localizacion">
-                  Localización
+                  Lugar a Reservar
                 </label>
                 <select class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('area_reservacion') mb-0 border-red-500 @enderror" name="area_reservacion" id="area_reservacion">
-                  <option value="">Seleccione una opción</option>  
+                  <option value="">Seleccione una opción</option>
                   @foreach ($areas as $area)
                     <option value="{{$area->nombre}}">{{$area->nombre}}</option>
                   @endforeach
@@ -105,7 +105,7 @@
                       </path>
                   </svg>
               </a>
-              
+
               <a href="https://www.instagram.com" type="button" class="rounded-full border-2 border-white hover:border-rose-600 text-rose-600 hover:text-rose-600 leading-normal uppercase hover:bg-white focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-10 h-10 m-1">
                   <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram"
                       class="w-3 h-full mx-auto" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -128,7 +128,7 @@
     </div>
   </footer>
 
-  @livewireScripts  
+  @livewireScripts
   {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
   <script>
     window.addEventListener('swal:confirmar', event => {
@@ -145,7 +145,7 @@
         if(resultado.isConfirmed) {
           window.livewire.emit('guardar', event.detail.id)
           Swal.fire({
-            title: '¡Reservación realizada!',
+            title: '¡Reservación realizada exitosamente!',
             text: '',
             icon: 'success',
             confirmButtonText: 'Aceptar',

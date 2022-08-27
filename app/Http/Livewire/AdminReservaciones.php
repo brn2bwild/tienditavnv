@@ -9,7 +9,7 @@ use Livewire\Component;
 class AdminReservaciones extends Component
 {
     // public $reservaciones;
-    public $id_reservacion, $nombre_reservacion, $email, $numero_telefonico, $fecha_reservacion, $hora_reservacion, $area_reservacion, $n_personas;
+    public $id_reservacion, $nombre_reservacion, $email, $numero_telefonico, $fecha_reservacion, $hora_reservacion, $area_reservacion, $comentario, $n_personas;
     public $modal, $busqueda;
 
     protected $rules = [
@@ -19,6 +19,7 @@ class AdminReservaciones extends Component
       'fecha_reservacion' => 'required|date',
       'hora_reservacion' => 'required',
       'area_reservacion' => 'required',
+      'comentario' => 'required',
       'n_personas' => 'required|numeric',
     ];
 
@@ -44,6 +45,7 @@ class AdminReservaciones extends Component
         'fecha_reservacion' => $this->fecha_reservacion,
         'hora_reservacion' => $this->hora_reservacion,
         'area_reservacion' => $this->area_reservacion,
+        'comentario' => $this->comentario,
         'n_personas' => $this->n_personas,
       ]);
 
@@ -80,8 +82,9 @@ class AdminReservaciones extends Component
       $this->fecha_reservacion = $reservacion->fecha_reservacion;
       $this->hora_reservacion = $reservacion->hora_reservacion;
       $this->area_reservacion = $reservacion->area_reservacion;
+      $this->comentario = $reservacion->comentario;
       $this->n_personas = $reservacion->n_personas;
-  
+
       $this->mostrarModal();
     }
 
@@ -106,6 +109,7 @@ class AdminReservaciones extends Component
       $this->fecha_reservacion = '';
       $this->hora_reservacion = '';
       $this->localizacion = '';
+      $this->comentario = '';
       $this->n_personas = '';
-    }   
+    }
 }
