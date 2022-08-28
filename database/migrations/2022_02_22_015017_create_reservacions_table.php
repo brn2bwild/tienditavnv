@@ -21,6 +21,7 @@ class CreateReservacionsTable extends Migration
             $table->date('fecha_reservacion');
             $table->time('hora_reservacion');
             $table->string('area_reservacion');
+            $table->string('comentario');
             $table->integer('n_personas');
             $table->timestamps();
         });

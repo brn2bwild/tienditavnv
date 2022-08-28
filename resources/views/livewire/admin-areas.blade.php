@@ -6,7 +6,7 @@
     <button wire:click="crear()" class="bg-blue-700 hover:bg-blue-600 text-white px-8 py-2 border border-blue-700 rounded">Nueva</button>
     <input class="px-2 text-sm border border-gray-300 rounded" wire:model="busqueda" type="text" placeholder="Buscar por nombre">
   </div>
-  <div class="flex justify-center w-full">
+  <div class="justify-center w-full table-responsive">
     <table class="table table-hover">
       <thead>
         <tr>

@@ -43,7 +43,7 @@
           <label class="block mb-2 text-sm font-bold text-gray-700" for="hora_reservacion">
             ¿A qué hora gusta su reservación?
           </label>
-          <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('hora_reservacion') mb-0 border-red-500 @enderror" wire:model="hora_reservacion" id="hora_reservacion" type="text" required/>
+          <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('hora_reservacion') mb-0 border-red-500 @enderror" wire:model="hora_reservacion" id="hora_reservacion" type="time" required/>
           @error('hora_reservacion')
             <span class="text-sm italic text-red-500 mb-2">{{$message}}</span>
           @enderror

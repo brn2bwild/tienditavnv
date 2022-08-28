@@ -10,7 +10,7 @@ class Reservaciones extends Component
 {
   public $areas;
   public $url_img = 'img/rio.jpg';
-  public $id_reservacion, $nombre_reservacion, $email, $numero_telefonico, $fecha_reservacion, $hora_reservacion, $area_reservacion, $n_personas;
+  public $id_reservacion, $nombre_reservacion, $email, $numero_telefonico, $fecha_reservacion, $hora_reservacion, $area_reservacion, $comentario, $n_personas;
 
   protected $rules = [
     'nombre_reservacion' => 'required|max:150',
@@ -19,6 +19,7 @@ class Reservaciones extends Component
     'fecha_reservacion' => 'required|date',
     'hora_reservacion' => 'required',
     'area_reservacion' => 'required',
+    'comentario' => 'required',
     'n_personas' => 'required|numeric',
   ];
 
@@ -38,8 +39,8 @@ class Reservaciones extends Component
     $this->validate();
     $this->dispatchBrowserEvent('swal:confirmar', [
       'title' => '¿Deseas confirmar la reservación?',
-      'text' => '',
-      'icon' => 'success',
+      'text' => 'Pasado los 15 minutos de la fecha y hora de reservacion esta sera eliminada',
+      'icon' => 'warning',
       'type' => 'question',
     ]);
   }
@@ -53,12 +54,14 @@ class Reservaciones extends Component
   }
 
   public function limpiarDatos() {
+
     $this->nombre_reservacion = '';
     $this->email = '';
     $this->numero_telefonico = '';
     $this->fecha_reservacion = '';
     $this->hora_reservacion = '';
     $this->area_reservacion = '';
+    $this->comentario = '';
     $this->n_personas = '';
   }
 }
