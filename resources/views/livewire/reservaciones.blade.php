@@ -29,7 +29,7 @@
         @error('numero_telefonico')
           <span class="text-sm italic text-red-500 mb-2">{{$message}}</span>
         @enderror
-      <div class="mb-1 md:flex md:justify-between">
+      <div class="md:flex md:justify-between">
         <div class="mb-4 md:mr-2 md:mb-0">
           <label class="block mb-2 text-sm font-bold text-gray-700" for="fecha_reservacion">
             ¿Qué fecha desea reservar?
@@ -49,7 +49,7 @@
           @enderror
         </div>
       </div>
-      <div class="mb-3 md:flex md:justify-between">
+      <div class="md:flex md:justify-between">
         <div class="mb-4 md:mr-2 md:mb-0">
           <label class="block mb-2 text-sm font-bold text-gray-700" for="localizacion">
             Localización
@@ -68,13 +68,23 @@
           <label class="block mb-2 text-sm font-bold text-gray-700" for="n_personas">
             Número de personas
           </label>
-          <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('n_personas') mb-0 border-red-500 @enderror" wire:model="n_personas" id="n_personas" type="number" placeholder="2" min="1" max="50" required/>
+          <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('n_personas') mb-0 border-red-500 @enderror" wire:model="n_personas" id="n_personas" type="number" placeholder="2" min="1" required/>
           @error('n_personas')
             <span class="text-sm italic text-red-500 mb-2">{{$message}}</span>
           @enderror
         </div>
       </div>
-      <div class="mb-6 text-center">
+      <div>
+        <label class="block mb-2 text-sm font-bold text-gray-700" for="comentario">
+          Comentario
+        </label>
+        <textarea class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('comentario') mb-0 border-red-500 @enderror" wire:model="comentario" id="comentario" type="text" placeholder="¿Donde le gustaría que fuera su reservación? Puede anotarlo aquí..." rows="4" required maxlength="255">
+        </textarea>
+        @error('comentario')
+          <span class="text-sm italic text-red-500 mb-2">{{$message}}</span>
+        @enderror
+      </div>
+      <div class="mb-6 mt-2 text-center">
         <button class="w-full px-4 py-2 font-bold text-white bg-rose-500 rounded-full hover:bg-rose-400 focus:outline-none focus:shadow-outline" wire:click.prevent="confirmarGuardar()">
           Hacer reservación
         </button>

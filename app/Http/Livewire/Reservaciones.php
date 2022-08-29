@@ -19,7 +19,7 @@ class Reservaciones extends Component
     'fecha_reservacion' => 'required|date',
     'hora_reservacion' => 'required',
     'area_reservacion' => 'required',
-    'comentario' => 'required',
+    'comentario' => 'nullable|max:255',
     'n_personas' => 'required|numeric',
   ];
 
@@ -31,8 +31,10 @@ class Reservaciones extends Component
   }
 
   public function cambiarImg($nombre) {
-    $area = Area::where('nombre', $nombre)->first();
-    ($area != null) ? $this->url_img = 'storage/'.$area->url_img : $this->url_img = 'img/rio.jpg';
+    if($nombre != null){
+      $area = Area::where('nombre', $nombre)->firstOrFail();
+      ($area->url_img == null) ?: $this->url_img = 'storage/'.$area->url_img;
+    }
   }
 
   public function confirmarGuardar() {
@@ -40,8 +42,8 @@ class Reservaciones extends Component
     $this->dispatchBrowserEvent('swal:confirmar', [
       'title' => '¿Deseas confirmar la reservación?',
       'text' => 'Pasado los 15 minutos de la fecha y hora de reservacion esta sera eliminada',
-      'icon' => 'warning',
-      'type' => 'question',
+      'icon' => 'info',
+      'type' => 'info',
     ]);
   }
 
