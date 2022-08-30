@@ -16,7 +16,7 @@
           <th scope="col" class="text-left">Fecha</th>
           <th scope="col" class="text-left">Hora</th>
           <th scope="col" class="text-left">Área</th>
-          <th scope="col" class="text-left">No. de Personas</th>
+          <th scope="col" class="text-left"># Personas</th>
           <th scope="col" class="text-left">Comentario</th>
           <th scope="col" class="text-center">Acciones</th>
         </tr>

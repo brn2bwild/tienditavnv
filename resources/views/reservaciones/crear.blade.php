@@ -42,24 +42,21 @@
       }).then((resultado) => {
         if(resultado.isConfirmed) {
           window.livewire.emit('guardar', event.detail.id)
-          Swal.fire({
-            title: '¡Reservación realizada exitosamente!',
-            text: '',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 1500
-          })
         }
+      })
+    })
+
+    window.addEventListener('swal:modal', event => {
+      Swal.fire({
+        title: event.detail.title,
+        text: event.detail.text,
+        icon: event.detail.icon,
+        showConfirmButton: false,
+        timer: 2500
       })
     })
   </script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-  {{-- <script>
-    $('#hora_reservacion').timepicker()
-    $('#hora_reservacion').on('changeTime', function() {
-      window.livewire.emit('asignarHora', $(this).val())
-    })
-  </script> --}}
   <script>
     $(document).ready(function(){
       $('.timepicker').timepicker({

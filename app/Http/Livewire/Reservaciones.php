@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Area;
 use App\Models\Reservacion;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Reservaciones extends Component
@@ -62,16 +63,46 @@ class Reservaciones extends Component
       'title' => '¿Deseas confirmar la reservación?',
       'text' => 'Pasados 15 minutos de la hora de reservacion, ésta sera eliminada',
       'icon' => 'info',
-      'type' => 'info',
     ]);
   }
 
   public function guardar() {
     $data_validada = $this->validate();
     $data_validada['hora_reservacion'] = date("H:i", strtotime($data_validada['hora_reservacion']));
-    Reservacion::create($data_validada);
 
-    $this->limpiarDatos();
+    $area = Area::where('nombre', $this->area_reservacion)->first();
+
+    $reservaciones = DB::table('reservacions')
+                        ->Where([
+                          ['fecha_reservacion', '=', $this->fecha_reservacion],
+                          ['hora_reservacion', '=', $data_validada['hora_reservacion']],
+                          ['area_reservacion', '=', $this->area_reservacion],
+                        ])->get();
+
+    $personas_horario = 0;
+
+    foreach ($reservaciones as $reservacion) {
+      $personas_horario += $reservacion->n_personas; 
+    }
+
+    if($personas_horario >= $area->capacidad or $personas_horario + $this->n_personas > $area->capacidad){
+      $this->dispatchBrowserEvent('swal:modal', [
+        'title' => 'Capacidad agotada',
+        'text' => 'No hay espacios disponibles para el área, fecha y hora que deseas reservar',
+        'icon' => 'info',
+      ]);
+    } else {
+      Reservacion::create($data_validada);
+  
+      $this->limpiarDatos();
+
+      $this->dispatchBrowserEvent('swal:modal', [
+        'title' => '¡Reservación realizada!',
+        'text' => '',
+        'icon' => 'success',
+      ]);
+    }
+    
   }
 
   public function limpiarDatos() {
