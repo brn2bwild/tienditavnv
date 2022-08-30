@@ -34,7 +34,7 @@
           <label class="block mb-2 text-sm font-bold text-gray-700" for="fecha_reservacion">
             Fecha de la reservación
           </label>
-          <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-600 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('fecha_reservacion') mb-0 border-red-500 @enderror" wire:model="fecha_reservacion" id="fecha_reservacion" type="date" required/>
+          <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-600 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('fecha_reservacion') mb-0 border-red-500 @enderror" wire:model="fecha_reservacion" id="fecha_reservacion" type="date" min="{{$min_date}}" required/>
           @error('fecha_reservacion')
             <span class="text-sm italic text-red-500 mb-2">{{$message}}</span>
           @enderror
