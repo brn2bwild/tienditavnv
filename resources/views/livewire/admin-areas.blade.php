@@ -13,7 +13,6 @@
           <th scope="col" class="text-left">Nombre</th>
           <th scope="col" class="text-left">Capacidad</th>
           <th scope="col" class="text-left">Descripción</th>
-          <th scope="col" class="text-center">Imágen</th>
           <th scope="col" class="text-center">Acciones</th>
         </tr>
       </thead>
@@ -23,18 +22,6 @@
             <td class="text-left">{{ $area->nombre }}</td>
             <td class="text-left">{{ $area->capacidad }}</td>
             <td class="text-left">{{ $area->descripcion }}</td>
-            <td>
-              <div class="flex justify-around">
-                @if($area->url_img != null)
-                  <button class="bg-blue-700 hover:bg-blue-600 text-white px-3 py-2 rounded-sm" onclick="mostrarImg('{{$area->url_img}}')"><i class="fas fa-eye"></i></button>
-                  <button class="bg-red-700 hover:bg-red-600 text-white px-3 py-2 rounded-sm"><i class="fas fa-trash" wire:click="confirmarEliminarImg({{$area->id}})"></i></button>
-                @else
-                  <input type="file" wire:model="imagen">
-                  <button wire:click="guardarImg({{$area->id}})" class="bg-indigo-700 hover:bg-indigo-600 text-white px-3 py-2 rounded-sm">Guardar imagen</button>
-                  @error('imagen') <span class="error">{{ $message }}</span> @enderror
-                @endif
-              </div>
-            </td>
             <td>
               <div class="flex justify-around">
                 <button wire:click.prevent="editar({{$area->id}})" class="bg-blue-700 hover:bg-blue-600 text-white px-3 py-2 rounded-sm"><i class="fas fa-pen"></i></button>

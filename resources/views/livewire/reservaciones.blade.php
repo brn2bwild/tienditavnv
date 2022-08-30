@@ -2,12 +2,12 @@
   <div class="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg" style="background-image: url('{{$url_img}}'); transition: 0.5s" id="muestra"></div>
   <div class="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
     <h3 class="pt-4 text-2xl text-center">Reservaciones La Tiendita VNV</h3>
-    <form class="px-8 pt-6 pb-8 bg-white rounded">
+    <form class="px-8 pt-6 pb-0 bg-white rounded">
       <div>
         <label class="block mb-2 text-sm font-bold text-gray-700" for="nombre_reservacion">
           Nombre completo
         </label>
-        <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('nombre_reservacion') mb-0 border-red-500 @enderror" wire:model="nombre_reservacion" id="nombre_reservacion" type="text" placeholder="Reservación a nombre de..." required/>
+        <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('nombre_reservacion') mb-0 border-red-500 @enderror" wire:model="nombre_reservacion" id="nombre_reservacion" type="text" placeholder="¿A que nombre estará será tu reservación?" required/>
         @error('nombre_reservacion')
           <span class="text-sm italic text-red-500 mb-2">{{$message}}</span>
         @enderror
@@ -16,7 +16,7 @@
         <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
           Correo Electrónico
         </label>
-        <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('email') mb-0 border-red-500 @enderror" wire:model="email" id="email" type="email" placeholder="Ingrese su correo electrónico para confirmación" required/>
+        <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('email') mb-0 border-red-500 @enderror" wire:model="email" id="email" type="email" placeholder="Ingresa tu correo electrónico para confirmación" required/>
         @error('email')
           <span class="text-sm italic text-red-500 mb-2">{{$message}}</span>
         @enderror
@@ -25,37 +25,37 @@
         <label class="block mb-2 text-sm font-bold text-gray-700" for="numero_telefonico">
           Número telefónico
         </label>
-        <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('numero_telefonico') mb-0 border-red-500 @enderror" wire:model="numero_telefonico" id="numero_telefonico" type="tel" placeholder="Introduzca su número para aclaraciones" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required/>
+        <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('numero_telefonico') mb-0 border-red-500 @enderror" wire:model="numero_telefonico" id="numero_telefonico" type="tel" placeholder="Introduce tu número para aclaraciones" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required/>
         @error('numero_telefonico')
           <span class="text-sm italic text-red-500 mb-2">{{$message}}</span>
         @enderror
       <div class="md:flex md:justify-between">
         <div class="mb-4 md:mr-2 md:mb-0">
           <label class="block mb-2 text-sm font-bold text-gray-700" for="fecha_reservacion">
-            ¿Qué fecha desea reservar?
+            Fecha de la reservación
           </label>
-          <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('fecha_reservacion') mb-0 border-red-500 @enderror" wire:model="fecha_reservacion" id="fecha_reservacion" type="date" required/>
+          <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-600 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('fecha_reservacion') mb-0 border-red-500 @enderror" wire:model="fecha_reservacion" id="fecha_reservacion" type="date" required/>
           @error('fecha_reservacion')
             <span class="text-sm italic text-red-500 mb-2">{{$message}}</span>
           @enderror
         </div>
         <div class="md:ml-2">
           <label class="block mb-2 text-sm font-bold text-gray-700" for="hora_reservacion">
-            ¿A qué hora gusta su reservación?
+            Hora de tu reservación
           </label>
-          <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('hora_reservacion') mb-0 border-red-500 @enderror" wire:model="hora_reservacion" id="hora_reservacion" type="time" required/>
+          <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-600 border rounded shadow appearance-none focus:outline-none focus:shadow-outline timepicker @error('hora_reservacion') mb-0 border-red-500 @enderror" wire:model="hora_reservacion" id="hora_reservacion" type="text" required/>
           @error('hora_reservacion')
             <span class="text-sm italic text-red-500 mb-2">{{$message}}</span>
           @enderror
         </div>
       </div>
       <div class="md:flex md:justify-between">
-        <div class="mb-4 md:mr-2 md:mb-0">
+        <div class="mb-4 md:mr-2 md:mb-0 w-3/4">
           <label class="block mb-2 text-sm font-bold text-gray-700" for="localizacion">
-            Localización
+            Área de la reservación
           </label>
-          <select class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('area_reservacion') mb-0 border-red-500 @enderror" wire:model="area_reservacion" id="area_reservacion" onchange="cambiarImg()">
-            <option value="">Seleccione una opción</option>  
+          <select class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-600 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('area_reservacion') mb-0 border-red-500 @enderror" wire:model="area_reservacion" id="area_reservacion">
+            <option value="">¿En qué área desea su revervación?</option>  
             @foreach ($areas as $area)
               <option value="{{$area->nombre}}">{{$area->nombre}}</option>
             @endforeach
@@ -68,7 +68,7 @@
           <label class="block mb-2 text-sm font-bold text-gray-700" for="n_personas">
             Número de personas
           </label>
-          <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('n_personas') mb-0 border-red-500 @enderror" wire:model="n_personas" id="n_personas" type="number" placeholder="2" min="1" required/>
+          <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('n_personas') mb-0 border-red-500 @enderror" wire:model="n_personas" id="n_personas" type="number" placeholder="Indícanos por favor" min="1" required/>
           @error('n_personas')
             <span class="text-sm italic text-red-500 mb-2">{{$message}}</span>
           @enderror
@@ -78,7 +78,7 @@
         <label class="block mb-2 text-sm font-bold text-gray-700" for="comentario">
           Comentario
         </label>
-        <textarea class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('comentario') mb-0 border-red-500 @enderror" wire:model="comentario" id="comentario" type="text" placeholder="¿Donde le gustaría que fuera su reservación? Puede anotarlo aquí..." rows="4" required maxlength="255">
+        <textarea class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('comentario') mb-0 border-red-500 @enderror" wire:model="comentario" id="comentario" type="text" placeholder="¿Te gustaría que tu reservación fuera en un lugar en especial? Puedes anotarlo aquí..." rows="4" required maxlength="255">
         </textarea>
         @error('comentario')
           <span class="text-sm italic text-red-500 mb-2">{{$message}}</span>

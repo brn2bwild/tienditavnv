@@ -20,27 +20,6 @@
 @section('js')
   @livewireScripts
   <script>
-    $(document).ready(function() {
-      $('#areas').DataTable({
-        "language": {
-          "lengthMenu": "Mostrar _MENU_ registros por página",
-          "zeroRecords": "No se encontró ningún registro",
-          "info": "Página _PAGE_ de _PAGES_",
-          "infoEmpty": "No hay registros disponibles",
-          "infoFiltered": "(filtrados de _MAX_ registros totales)",
-          "search": "Buscar",
-          "paginate":{
-            "previous": "Anterior",
-            "next": "Siguiente"
-          }
-        },
-        "paging": true,
-        "ordering": false,
-        "info": true,
-      });
-    });
-  </script>
-  <script>
     window.addEventListener('swal:modal', event => {
       Swal.fire({
         title: event.detail.title,
@@ -93,7 +72,7 @@
     })
   </script>
 
-  <script>
+  {{-- <script>
     function mostrarImg(url) {
       Swal.fire({
         title: '',
@@ -103,5 +82,5 @@
         imageHeight: 400,
       })
     }
-  </script>
+  </script> --}}
 @endsection 

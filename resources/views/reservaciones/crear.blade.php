@@ -6,8 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Reservaciones La Tiendita VNV</title>
   <link href="{{asset('css/app.css')}}" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="{{asset('js/app.js')}}"></script>
   <script src="{{asset('js/sweetalert2@11.js')}}"></script>
+
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
   @livewireStyles
 </head>
@@ -31,8 +34,9 @@
         title: event.detail.title,
         text: event.detail.text,
         icon: event.detail.icon,
-        showDenyButton: false,
-        denyButtonColor: '#d33',
+        showDenyButton: true,
+        denyButtonColor: '#5D2A42',
+        denyButtonText: 'Cancelar',
         confirmButtonText: 'Aceptar',
         confirmButtonColor: '#f43f5e',
       }).then((resultado) => {
@@ -49,26 +53,29 @@
       })
     })
   </script>
-  <script>
-    function cambiarImg(){
-      var nombre = document.getElementById("area_reservacion").value
-      window.livewire.emit('cambiarImg', nombre)
-    }
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+  {{-- <script>
+    $('#hora_reservacion').timepicker()
+    $('#hora_reservacion').on('changeTime', function() {
+      window.livewire.emit('asignarHora', $(this).val())
+    })
+  </script> --}}
   <script>
     $(document).ready(function(){
-      $('#hora_reservacion').timepicker({
+      $('.timepicker').timepicker({
         timeFormat: 'h:mm p',
         interval: 30,
-        minTime: '10',
-        maxTime: '6:00pm',
+        minTime: '8',
+        maxTime: '3:00pm',
         defaultTime: '11',
-        startTime: '10:00',
+        startTime: '8:00',
         dynamic: false,
         dropdown: true,
-        scrollbar: true
+        scrollbar: false,
+        change: function(time) {
+          hora = $(this).val()
+          window.livewire.emit('asignarHora', hora)
+        }
       })
     })
   </script>

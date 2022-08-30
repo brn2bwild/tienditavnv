@@ -23,25 +23,38 @@ class Reservaciones extends Component
     'n_personas' => 'required|numeric',
   ];
 
-  protected $listeners = ['guardar', 'cambiarImg'];
+  protected $messages = [
+    'nombre_reservacion.required' => 'Debes introducir un nombre para tu reservación',
+    'nombre_reservacion.max' => 'Sólo se puede introducir un máximo de 50 caracteres',
+    'email.required' => 'Debes introducir un correo para notificarte',
+    'email.email' => 'La dirección de correo debe ser válida',
+    'numero_telefonico.required' => 'Debes introducir un número para aclaraciones',
+    'numero_telefonico.digits' => 'El número debe ser un número de teléfono válido',
+    'fecha_reservacion.required' => 'Debes seleccionar una fecha para tu reservación',
+    'fecha_reservacion.date' => 'La fecha debe ser válida',
+    'hora_reservacion.required' => 'Debes seleccionar una hora para tu reservación',
+    'area_reservacion.required' => 'Debes seleccionar un área para tu reservación',
+    'comentario.max' => 'Sólo se puede introducir un máximo de 255 caracteres',
+    'n_personas.required' => 'Debes introducir el número de personas',
+    'n_personas.numeric' => 'Debes introducir un número válido',
+  ];
+
+  protected $listeners = ['guardar', 'cambiarImg', 'asignarHora'];
 
   public function render() {
     $this->areas = Area::all();
     return view('livewire.reservaciones');
   }
 
-  public function cambiarImg($nombre) {
-    if($nombre != null){
-      $area = Area::where('nombre', $nombre)->firstOrFail();
-      ($area->url_img == null) ?: $this->url_img = 'storage/'.$area->url_img;
-    }
+  public function asignarHora($hora){
+    $this->hora_reservacion = $hora;
   }
 
   public function confirmarGuardar() {
     $this->validate();
     $this->dispatchBrowserEvent('swal:confirmar', [
       'title' => '¿Deseas confirmar la reservación?',
-      'text' => 'Pasado los 15 minutos de la fecha y hora de reservacion esta sera eliminada',
+      'text' => 'Pasados 15 minutos de la hora de reservacion, ésta sera eliminada',
       'icon' => 'info',
       'type' => 'info',
     ]);
@@ -56,7 +69,6 @@ class Reservaciones extends Component
   }
 
   public function limpiarDatos() {
-
     $this->nombre_reservacion = '';
     $this->email = '';
     $this->numero_telefonico = '';

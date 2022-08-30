@@ -20,26 +20,6 @@
 
 @section('js')
   <script>
-    $(document).ready(function() {
-      $('#reservaciones').DataTable({
-        "language": {
-          "lengthMenu": "Mostrar _MENU_ registros por página",
-          "zeroRecords": "No se encontró ningún registro",
-          "info": "Página _PAGE_ de _PAGES_",
-          "infoEmpty": "No hay registros disponibles",
-          "infoFiltered": "(filtrados de _MAX_ registros totales)",
-          "search": "Buscar",
-          "paginate":{
-            "previous": "Anterior",
-            "next": "Siguiente"
-          }
-        },
-        "paging": false,
-        "ordering": false,
-      });
-    });
-  </script>
-  <script>
     window.addEventListener('swal:modal', event => {
       Swal.fire({
         title: event.detail.title,
