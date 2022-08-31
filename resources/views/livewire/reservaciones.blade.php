@@ -91,7 +91,7 @@
       </div>
       <hr class="mb-6 border-t" />
       <div class="flex justify-center mt-4">
-        <a href="https://www.facebook.com" type="button" class="rounded-full border-2 border-white hover:border-rose-600 text-rose-600 hover:text-rose-600 leading-normal uppercase hover:bg-white focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-10 h-10 m-1">
+        <a href="https://www.facebook.com/latienditavnv/" type="button" class="rounded-full border-2 border-white hover:border-rose-600 text-rose-600 hover:text-rose-600 leading-normal uppercase hover:bg-white focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-10 h-10 m-1">
           <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f"
                 class="w-2 h-full mx-auto" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                 <path fill="currentColor"
@@ -100,7 +100,7 @@
             </svg>
         </a>
         
-        <a href="https://www.instagram.com" type="button" class="rounded-full border-2 border-white hover:border-rose-600 text-rose-600 hover:text-rose-600 leading-normal uppercase hover:bg-white focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-10 h-10 m-1">
+        <a href="https://www.instagram.com/latiendita_vnv/" type="button" class="rounded-full border-2 border-white hover:border-rose-600 text-rose-600 hover:text-rose-600 leading-normal uppercase hover:bg-white focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-10 h-10 m-1">
           <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram"
               class="w-3 h-full mx-auto" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               <path fill="currentColor"
