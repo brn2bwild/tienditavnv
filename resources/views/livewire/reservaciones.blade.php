@@ -2,7 +2,7 @@
   <div class="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg" style="background-image: url('{{$url_img}}'); transition: 0.5s" id="muestra"></div>
   <div class="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
 		<div class="flex justify-center items-center gap-4">
-			<div class="h-20 w-20" src="{{ url('img/logo.jpeg') }}" alt="tienditavnv-logo">
+			<img class="h-20 w-20" src="{{ url('img/logo.jpeg') }}" alt="tienditavnv-logo">
 			<h3 class="text-2xl text-center">Reservaciones La Tiendita VNV</h3>
 		</div>
     <form class="px-8 pt-6 pb-0 bg-white rounded">
