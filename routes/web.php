@@ -3,7 +3,6 @@
 use App\Http\Controllers\ReservacionController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/', function(){
   return redirect()->route('reservaciones.create');
 });
