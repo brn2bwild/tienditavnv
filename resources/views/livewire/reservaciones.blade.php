@@ -10,7 +10,7 @@
         <label class="block mb-2 text-sm font-bold text-gray-700" for="nombre_reservacion">
           Nombre completo
         </label>
-        <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('nombre_reservacion') mb-0 border-red-500 @enderror" wire:model="nombre_reservacion" id="nombre_reservacion" type="text" placeholder="¿A que nombre estará será tu reservación?" required/>
+        <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('nombre_reservacion') mb-0 border-red-500 @enderror" wire:model="nombre_reservacion" id="nombre_reservacion" type="text" placeholder="¿A que nombre estará tu reservación?" required/>
         @error('nombre_reservacion')
           <span class="text-sm italic text-red-500 mb-2">{{$message}}</span>
         @enderror
