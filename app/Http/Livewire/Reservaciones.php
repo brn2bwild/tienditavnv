@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\ConfirmacionMail;
 use App\Models\Area;
 use App\Models\Reservacion;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class Reservaciones extends Component
@@ -98,6 +100,8 @@ class Reservaciones extends Component
 			]);
 		} else {
 			Reservacion::create($data_validada);
+
+			Mail::to($data_validada['email'])->send(new ConfirmacionMail($data_validada));
 
 			$this->limpiarDatos();
 

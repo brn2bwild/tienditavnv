@@ -29,6 +29,6 @@ class ConfirmacionMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Confirmación de reservación - La Tiendita VNV')->view('emails.confirmacion-reservacion');
+        return $this->subject('La Tiendita VNV - Confirmación de reservación')->view('emails.confirmacion-reservacion');
     }
 }
