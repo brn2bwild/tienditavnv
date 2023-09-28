@@ -36,39 +36,43 @@
                 <em class="text-left text-red-600">{{ $message }}</em>
               @enderror
             </div>
-            <div class="mb-4">
-              <label for="fecha_reservacion" class="text-gray-800 text-sm font-bold block text-left ">Fecha de la reservación</label>
-              <input id="fecha_reservacion" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" wire:model="fecha_reservacion" />
-              @error('fecha_reservacion')
-                <em class="text-left text-red-600">{{ $message }}</em>
-              @enderror
-            </div>
-            <div class="mb-4">
-              <label for="hora_reservacion" class="text-gray-800 text-sm font-bold block text-left ">Hora de la reservación</label>
-              <input id="hora_reservacion" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="time" wire:model="hora_reservacion" />
-              @error('hora_reservacion')
-                <em class="text-left text-red-600">{{ $message }}</em>
-              @enderror
-            </div>
-            <div class="mb-4">
-              <label for="area_reservacion" class="text-gray-800 text-sm font-bold block text-left ">Área de la reservación</label>
-              <select id="area_reservacion" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" wire:model="area_reservacion">
-                <option value="">Seleccione una opción</option>
-                @foreach ($areas as $area)
-                  <option value="{{ $area->nombre }}">{{ $area->nombre }}</option>
-                @endforeach
-              </select>
-              @error('area_reservacion')
-                <em class="text-left text-red-600">{{ $message }}</em>
-              @enderror
-            </div>
-            <div class="mb-4">
-              <label for="n_personas" class="text-gray-800 text-sm font-bold block text-left ">Personas por reservación</label>
-              <input id="n_personas" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="text" wire:model="n_personas"/>
-              @error('n_personas')
-                  <em class="text-left text-red-600">{{ $message }}</em>
-              @enderror
-            </div>
+						<div class="mb-4 flex justify-between">
+							<div class="w-1/4">
+								<label for="fecha_reservacion" class="text-gray-800 text-sm font-bold text-left ">Fecha de la reservación</label>
+								<input id="fecha_reservacion" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="date" wire:model="fecha_reservacion" />
+								@error('fecha_reservacion')
+									<em class="text-left text-red-600">{{ $message }}</em>
+								@enderror
+							</div>
+							<div class="w-1/4">
+								<label for="hora_reservacion" class="text-gray-800 text-sm font-bold text-left ">Hora de la reservación</label>
+								<input id="hora_reservacion" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="time" wire:model="hora_reservacion" />
+								@error('hora_reservacion')
+									<em class="text-left text-red-600">{{ $message }}</em>
+								@enderror
+							</div>
+						</div>
+						<div class="mb-4 flex justify-between">
+							<div>
+								<label for="area_reservacion" class="text-gray-800 text-sm font-bold block text-left ">Área de la reservación</label>
+								<select id="area_reservacion" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" wire:model="area_reservacion">
+									<option value="">Seleccione una opción</option>
+									@foreach ($areas as $area)
+										<option value="{{ $area->nombre }}">{{ $area->nombre }}</option>
+									@endforeach
+								</select>
+								@error('area_reservacion')
+									<em class="text-left text-red-600">{{ $message }}</em>
+								@enderror
+							</div>
+							<div>
+								<label for="n_personas" class="text-gray-800 text-sm font-bold block text-left ">Personas por reservación</label>
+								<input id="n_personas" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" type="text" wire:model="n_personas"/>
+								@error('n_personas')
+										<em class="text-left text-red-600">{{ $message }}</em>
+								@enderror
+							</div>
+						</div>
             <div class="mb-4">
               <label class="text-gray-800 text-sm font-bold block text-left" for="comentario">Comentario</label>
               <textarea rows="10" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" wire:model="comentario" id="comentario" type="text"></textarea>

@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class Reservaciones extends Component
 {
@@ -99,6 +100,11 @@ class Reservaciones extends Component
 				'icon' => 'info',
 			]);
 		} else {
+
+			$token = Str::random(64);
+
+			$data_validada['token_cancelacion'] = $token;
+
 			Reservacion::create($data_validada);
 
 			Mail::to($data_validada['email'])->send(new ConfirmacionMail($data_validada));

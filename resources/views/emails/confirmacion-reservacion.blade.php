@@ -29,6 +29,12 @@
 		<h3>Área de la reservación: {{$datos_mail['area_reservacion']}}</h3>
 		<h3>Para {{$datos_mail['n_personas']}} persona(s)</h3>
 		<h3>Comentarios: {{ $datos_mail['comentario'] }}</h3>
+
+		<h3>Si deseas cancelar tu reservación accede al siguiente enlace y la reservación será cancelada automáticamente.
+		</h3>
+		<h3>
+			<a href="{{ URL::to('/').'/cancelacion/'.$datos_mail['token_cancelacion'] }}">Cancelar reservación</a>
+		</h3>
 		<div style="text-align:center">
 			<h4>Para cualquier duda y/o aclaración puedes usar los números de contacto. Gracias por tu reservación.</h4>
 		</div>

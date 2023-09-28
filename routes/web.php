@@ -26,5 +26,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 });
 
 Route::get('/reservaciones', [ ReservacionController::class, 'create' ])->name('reservaciones.create');
+
 Route::post('/reservaciones', [ ReservacionController::class, 'store' ])->name('reservaciones.store');
+
+Route::get('/cancelacion/{token}', [ReservacionController::class, 'cancelarReservacion'])->name('reservaciones.cancelacion');
 

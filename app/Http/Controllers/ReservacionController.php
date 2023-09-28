@@ -11,64 +11,88 @@ use Illuminate\Support\Facades\Mail;
 
 class ReservacionController extends Controller
 {
-    public function index()
-    {
-        if (auth()->check()) {
-            $Reservacion = Reservacion::all();
-            return view('Reservacion.index', compact('Reservacion'));
-        }
-        return redirect()->route('Reservacion.create');
-    }
+	public function index()
+	{
+		if (auth()->check()) {
+			$Reservacion = Reservacion::all();
+			return view('Reservacion.index', compact('Reservacion'));
+		}
+		return redirect()->route('Reservacion.create');
+	}
 
-    public function create() {
-      $areas = Area::all();
-      return view('reservaciones.crear', compact('areas'));
-    }
+	public function create()
+	{
+		$areas = Area::all();
+		return view('reservaciones.crear', compact('areas'));
+	}
 
-    public function store(Request $request) {
-      $this->validate($request, [
-        'nombre_reservacion' => ['required', 'max:150'],
-        'email' => ['required', 'email'],
-        'numero_telefonico' => ['required', 'digits:10'],
-        'fecha_reservacion' => ['required', 'date'],
-        'hora_reservacion' => ['required'],
-        'area_reservacion' => ['required'],
-        'comentario' => ['required'],
-        'n_personas' => ['required'],
-      ]);
+	public function store(Request $request)
+	{
+		$this->validate($request, [
+			'nombre_reservacion' => ['required', 'max:150'],
+			'email' => ['required', 'email'],
+			'numero_telefonico' => ['required', 'digits:10'],
+			'fecha_reservacion' => ['required', 'date'],
+			'hora_reservacion' => ['required'],
+			'area_reservacion' => ['required'],
+			'comentario' => ['required'],
+			'n_personas' => ['required'],
+		]);
 
-      Reservacion::create($request->all());
+		Reservacion::create($request->all());
 
-      $datos_mail = [
-        'nombre' => $request->nombre_reservacion,
-        'fecha' => $request->fecha_reservacion,
-        'hora' => $request->hora_reservacion,
-        'area' => $request->area_reservacion,
-        'cantidad' => $request->n_personas,
-      ];
+		$datos_mail = [
+			'nombre' => $request->nombre_reservacion,
+			'fecha' => $request->fecha_reservacion,
+			'hora' => $request->hora_reservacion,
+			'area' => $request->area_reservacion,
+			'cantidad' => $request->n_personas,
+		];
 
-      Mail::to($request->email)->send(new ConfirmacionMail($datos_mail));
+		Mail::to($request->email)->send(new ConfirmacionMail($datos_mail));
 
-      return back()->with('mensaje','Su reservación está lista.');
-    }
+		return back()->with('mensaje', 'Su reservación está lista.');
+	}
 
-    public function show(Reservacion $reservacion) {
-        //
-    }
+	public function show(Reservacion $reservacion)
+	{
+		//
+	}
 
-    public function edit(Reservacion $reservacion) {
-        //
-    }
+	public function edit(Reservacion $reservacion)
+	{
+		//
+	}
 
-    public function update(Request $request, Reservacion $reservacion) {
-        //
-    }
+	public function update(Request $request, Reservacion $reservacion)
+	{
+		//
+	}
 
-    public function destroy($id) {
-        $Reservacion = Reservacion::find($id);
+	public function destroy($id)
+	{
+		$Reservacion = Reservacion::find($id);
 
-        $Reservacion->delete();
+		$Reservacion->delete();
 
-        return redirect()->route('Reservacion.index');
-    }
+		return redirect()->route('Reservacion.index');
+	}
+
+	public function cancelarReservacion(Request $request)
+	{
+		$reservacion = Reservacion::where('token_cancelacion', $request->token)->first();
+
+		if($reservacion == null)
+		{
+			return view('reservaciones.cancelacion', [
+				'mensaje' => 'Hubo un error en la cancelación, intente de nuevo.'
+			]);
+		}
+
+		$reservacion->delete();
+
+		return view('reservaciones.cancelacion', [
+			'mensaje' => 'Reservación cancelada',
+		]);
+	}
 }

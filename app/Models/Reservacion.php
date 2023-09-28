@@ -18,5 +18,6 @@ class Reservacion extends Model
       'area_reservacion',
       'comentario',
       'n_personas',
+			'token_cancelacion',
     ];
 }
