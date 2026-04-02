@@ -73,10 +73,31 @@ class Reservaciones extends Component
 		]);
 	}
 
+	public function comprobarHora(){
+		$data_validada = $this->validate();
+		$data_validada['hora_reservacion'] = date("H:i", strtotime($data_validada['hora_reservacion']));
+
+		$fecha_hora_reservacion = Carbon::parse($this->fecha_reservacion . $data_validada['hora_reservacion']);
+
+		if(Carbon::now() >= $fecha_hora_reservacion->subHours(8)){
+			$this->dispatchBrowserEvent('swal:modal', [
+				'title' => 'Reservación fuera de tiempo',
+				'text' => 'Las reservaciones deben hacerse con 8 horas de anticipación',
+				'icon' => 'info',
+			]);
+
+			return;
+		}
+
+		$this->confirmarGuardar();
+	}
+
 	public function guardar()
 	{
 		$data_validada = $this->validate();
 		$data_validada['hora_reservacion'] = date("H:i", strtotime($data_validada['hora_reservacion']));
+
+		
 
 		$area = Area::where('nombre', $this->area_reservacion)->first();
 

@@ -24,7 +24,7 @@
 	</div>
 	<footer class="text-center text-white">
 		<div class="flex justify-center" style="background-color: rgba(0, 0, 0, 0.05);">
-			<span class="mr-2">La Tiendita VNV Todos los derechos reservados © 2023.</span>
+			<span class="mr-2">La Tiendita VNV Todos los derechos reservados © 2026.</span>
 			<a class="text-white hover:text-black" href="https://github.com/Devildrack">Devildrack</a>
 			<a class="text-white hover:text-black ml-4" href="https://github.com/Devildrack">brn2bwild</a>
 
@@ -33,6 +33,24 @@
 
 	@livewireScripts
 	<script>
+    window.addEventListener('swal:comprobar_hora', event => {
+      Swal.fire({
+        title: event.detail.title,
+        text: event.detail.text,
+        icon: event.detail.icon,
+        showDenyButton: false,
+        denyButtonColor: '#5D2A42',
+        denyButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#f43f5e',
+      }).then((resultado) => {
+        if(resultado.isConfirmed) {
+          window.livewire.emit('guardar', event.detail.id)
+        }
+      })
+    })
+
+
 		window.addEventListener('swal:confirmar', event => {
       Swal.fire({
         title: event.detail.title,
@@ -66,10 +84,10 @@
       $('.timepicker').timepicker({
         timeFormat: 'h:mm p',
         interval: 30,
-        minTime: '8',
-        maxTime: '3:00pm',
+        minTime: '8:00 a.m.',
+        maxTime: '3:00 p.m.',
         defaultTime: '11',
-        startTime: '8:00',
+        startTime: '8:00 a.m.',
         dynamic: false,
         dropdown: true,
         scrollbar: false,

@@ -88,7 +88,7 @@
         @enderror
       </div>
       <div class="mb-6 mt-2 text-center">
-        <button class="w-full px-4 py-2 font-bold text-white bg-rose-500 rounded-full hover:bg-rose-400 focus:outline-none focus:shadow-outline" wire:click.prevent="confirmarGuardar()">
+        <button class="w-full px-4 py-2 font-bold text-white bg-rose-500 rounded-full hover:bg-rose-400 focus:outline-none focus:shadow-outline" wire:click.prevent="comprobarHora()">
           Hacer reservación
         </button>
       </div>
