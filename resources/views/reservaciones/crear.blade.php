@@ -25,9 +25,6 @@
 	<footer class="text-center text-white">
 		<div class="flex justify-center" style="background-color: rgba(0, 0, 0, 0.05);">
 			<span class="mr-2">La Tiendita VNV Todos los derechos reservados © 2026.</span>
-			<a class="text-white hover:text-black" href="https://github.com/Devildrack">Devildrack</a>
-			<a class="text-white hover:text-black ml-4" href="https://github.com/Devildrack">brn2bwild</a>
-
 		</div>
 	</footer>
 
@@ -74,7 +71,7 @@
         text: event.detail.text,
         icon: event.detail.icon,
         showConfirmButton: false,
-        timer: 2500
+        timer: 4500
       })
     })
 	</script>

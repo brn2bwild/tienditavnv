@@ -77,6 +77,27 @@ class Reservaciones extends Component
 		$data_validada = $this->validate();
 		$data_validada['hora_reservacion'] = date("H:i", strtotime($data_validada['hora_reservacion']));
 
+		$hora_base = Carbon::parse($data_validada['hora_reservacion']);
+
+		$reservaciones_por_hora = DB::table('reservacions')
+		->where('fecha_reservacion', $this->fecha_reservacion)
+		->whereBetween('hora_reservacion', [
+			$hora_base->startOfHour()->format('H:i:s'),
+			$hora_base->addMinutes(60)->format('H:i:s') 
+			])
+		->get()
+		->count();
+			
+		if($reservaciones_por_hora >= 5){
+			$this->dispatchBrowserEvent('swal:modal', [
+				'title' => 'Límite de reservaciones alcanzado',
+				'text' => '¡Lo sentimos! Hemos alcanzado el límite de reservaciones por hora para la fecha seleccionada',
+				'icon' => 'info',
+			]);
+
+			return;
+		}	
+
 		$fecha_hora_reservacion = Carbon::parse($this->fecha_reservacion . $data_validada['hora_reservacion']);
 
 		if(Carbon::now() >= $fecha_hora_reservacion->subHours(8)){
@@ -97,7 +118,6 @@ class Reservaciones extends Component
 		$data_validada = $this->validate();
 		$data_validada['hora_reservacion'] = date("H:i", strtotime($data_validada['hora_reservacion']));
 
-		
 
 		$area = Area::where('nombre', $this->area_reservacion)->first();
 
